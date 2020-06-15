@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.repository.h2db.library.LibraryMapper">
+    <select id="selectLibraryById" resultType="Library">
+        SELECT ID
+              ,NAME
+              ,CITY
+              ,BOOKS
+          FROM LIBRARY
+         WHERE ID = #{id}
+    </select>
+
+    <select id="selectAllLibrary" resultType="Library">
+        SELECT ID
+              ,NAME
+              ,CITY
+              ,BOOKS
+          FROM LIBRARY
+    </select>
+
+    <insert id="insertLibrary">
+      INSERT INTO LIBRARY (ID, NAME, CITY, BOOKS)
+      VALUES (#{id}, #{name}, #{country}, #{population})
+    </insert>
+</mapper>

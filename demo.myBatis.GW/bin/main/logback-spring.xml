@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration debug="true">
+	<!-- Appenders -->
+	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern> %d{yyyy-MM-dd HH:mm:ss.SSS} %highlight(%-5level) %magenta(%-4relative) --- [ %thread{10} ] %cyan(%logger{20}) : %msg%n </pattern>
+		</encoder>
+	</appender>
+	
+	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>app.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>labatory.%d{yyyy-MM-dd}.log</fileNamePattern>
+			<maxHistory>30</maxHistory>
+		</rollingPolicy>
+	
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %-4relative --- [ %thread{10} ] %logger{35} - %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<!-- Logger -->
+	<!-- 루트 로거 -->
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+    </root>
+	
+	<springProfile name="local">
+		<!--  log4jdbc -->
+		<appender name="console-infolog" class="ch.qos.logback.core.ConsoleAppender">
+			<encoder>
+				<Pattern>%d %5p %m%n</Pattern>
+			</encoder>   
+		</appender>
+		<logger name="jdbc.sqlonly" level="INFO" appender-ref="console-infolog"/>
+		<logger name="jdbc.resultsettable" level="INFO" appender-ref="console-infolog"/>
+	</springProfile>
+
+</configuration>
