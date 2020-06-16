@@ -32,7 +32,6 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 		//call service for reading auth policy from resources.
 		//int id = 1;
 		//City city = service.getCityById(id);
-		
 		//System.out.println(city.getCountry());
 		
 		http.authorizeRequests()
