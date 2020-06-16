@@ -1,21 +1,34 @@
 package com.example.demo.config.security;
 
+import javax.annotation.PostConstruct;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
+import com.example.demo.repository.mariadb.city.City;
+import com.example.demo.service.CityService;
+
 @EnableWebSecurity
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
-	//@Autowired
-	//CityService service;
+	@Autowired
+	CityService service;
+	
+	@PostConstruct
+	public void setAuthEnv() {
+		int id=1;
+		City city = service.getCityById(id);
+		System.out.println("[SpringSecurityConfig][setAuthEnv]city=" + city.getName());
+	}
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		System.out.println("[SpringSecurityConfig][configure]");
 		
 		//call service for reading auth policy from resources.
-		int id = 1;
+		//int id = 1;
 		//City city = service.getCityById(id);
 		
 		//System.out.println(city.getCountry());
