@@ -20,6 +20,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	compileOnly 'org.springframework.boot:spring-boot-devtools'
 	compileOnly 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4:1.16'
+	compile 'net.rakugakibox.util:yaml-resource-bundle:1.1'
 	//runtimeOnly 'org.apache.derby:derby'
 	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
 	runtimeOnly 'com.h2database:h2'
